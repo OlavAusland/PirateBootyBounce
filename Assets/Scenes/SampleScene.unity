@@ -409,12 +409,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd6d14752a9e4344c9f2bd92e050400e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 0.01
   isHooked: 0
-  target: {x: 0, y: 0, z: 0}
   gm: {fileID: 1433115873}
+  rb: {fileID: 1001204520}
   lr: {fileID: 1001204523}
-  springJoint: {fileID: 1001204524}
+  distanceJoint: {fileID: 1001204524}
 --- !u!58 &1001204519
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -618,8 +618,8 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!231 &1001204524
-SpringJoint2D:
+--- !u!232 &1001204524
+DistanceJoint2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -636,8 +636,7 @@ SpringJoint2D:
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
   m_Distance: 2.5124688
-  m_DampingRatio: 1
-  m_Frequency: 1
+  m_MaxDistanceOnly: 1
 --- !u!1 &1433115872
 GameObject:
   m_ObjectHideFlags: 0

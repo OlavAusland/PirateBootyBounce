@@ -12,23 +12,24 @@ public class PlayerManager : MonoBehaviour
         get => isHooked;
         set
         {
-            springJoint.enabled = value;
+            distanceJoint.enabled = value;
             if (!value)
             {
                 
             }else
             {
-                springJoint.anchor = target;
+                distanceJoint.connectedAnchor = target;
             }
 
             isHooked = value;
         }
     }
 
-    public Vector3 target;
+    private Vector3 target;
     public GameManager gm;
+    public Rigidbody2D rb;
     public LineRenderer lr;
-    public SpringJoint2D springJoint;
+    public DistanceJoint2D distanceJoint;
     public void Update()
     {
         if(Input.GetMouseButtonDown(0))
@@ -43,9 +44,13 @@ public class PlayerManager : MonoBehaviour
             OnHook();
 
         if (Input.GetKey(KeyCode.W) && isHooked)
-            springJoint.distance -= Time.deltaTime * speed;
+            transform.position += (target - transform.position).normalized * speed;
         else if (Input.GetKey(KeyCode.S) && isHooked)
-            springJoint.distance += Time.deltaTime * speed;
+            transform.position -= (target - transform.position).normalized * speed;
+        else if (Input.GetKeyDown(KeyCode.A))
+            rb.AddForce(Vector2.left, ForceMode2D.Impulse);
+        else if (Input.GetKeyDown(KeyCode.D))
+            rb.AddForce(Vector2.right, ForceMode2D.Impulse);
 
     }
 
@@ -66,7 +71,8 @@ public class PlayerManager : MonoBehaviour
         }
 
         target = closest;
-        springJoint.distance = Vector3.Distance(transform.position, closest) - 1;
+        Debug.Log(target);
+        distanceJoint.distance = Vector3.Distance(transform.position, closest);
         
         IsHooked = true;
         lr.SetPosition(0, transform.position);
