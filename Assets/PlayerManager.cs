@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
+    public float swingForce = 2f;
     public float speed = 5f;
     public bool isHooked;
 
@@ -48,9 +49,9 @@ public class PlayerManager : MonoBehaviour
         else if (Input.GetKey(KeyCode.S) && isHooked)
             transform.position -= (target - transform.position).normalized * speed;
         else if (Input.GetKeyDown(KeyCode.A))
-            rb.AddForce(Vector2.left, ForceMode2D.Impulse);
+            rb.AddForce(Vector2.left * swingForce, ForceMode2D.Impulse);
         else if (Input.GetKeyDown(KeyCode.D))
-            rb.AddForce(Vector2.right, ForceMode2D.Impulse);
+            rb.AddForce(Vector2.right * swingForce, ForceMode2D.Impulse);
 
     }
 
@@ -71,7 +72,6 @@ public class PlayerManager : MonoBehaviour
         }
 
         target = closest;
-        Debug.Log(target);
         distanceJoint.distance = Vector3.Distance(transform.position, closest);
         
         IsHooked = true;
