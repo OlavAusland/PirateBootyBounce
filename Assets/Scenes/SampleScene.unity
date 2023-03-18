@@ -409,7 +409,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd6d14752a9e4344c9f2bd92e050400e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swingForce: 2
+  swingForce: 0.01
   speed: 0.01
   isHooked: 0
   gm: {fileID: 1433115873}
@@ -946,10 +946,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99087246449395542a5953b59122c2c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hookers:
+  obj: {fileID: 657585792}
+  cam: {fileID: 519420031}
+  scrollSpeed: 0.02
+  hookPoints:
   - {fileID: 657585794}
   - {fileID: 1757520069}
   - {fileID: 625414699}
+  point: {x: 0, y: 0, z: 0}
 --- !u!4 &1433115874
 Transform:
   m_ObjectHideFlags: 0

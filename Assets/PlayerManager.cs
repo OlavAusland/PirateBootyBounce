@@ -48,9 +48,9 @@ public class PlayerManager : MonoBehaviour
             transform.position += (target - transform.position).normalized * speed;
         else if (Input.GetKey(KeyCode.S) && isHooked)
             transform.position -= (target - transform.position).normalized * speed;
-        else if (Input.GetKeyDown(KeyCode.A))
+        else if (Input.GetKey(KeyCode.A))
             rb.AddForce(Vector2.left * swingForce, ForceMode2D.Impulse);
-        else if (Input.GetKeyDown(KeyCode.D))
+        else if (Input.GetKey(KeyCode.D))
             rb.AddForce(Vector2.right * swingForce, ForceMode2D.Impulse);
 
     }
@@ -60,12 +60,12 @@ public class PlayerManager : MonoBehaviour
         lr.SetPosition(0, transform.position);
     }
 
-    public void Hook()
+    private void Hook()
     {
         lr.positionCount = 2;
         var closest = new Vector3(Mathf.Infinity, Mathf.Infinity, Mathf.Infinity);
 
-        foreach (var point in gm.hookers)
+        foreach (var point in gm.hookPoints)
         {
             if (Vector3.Distance(transform.position, point.position) < Vector3.Distance(transform.position, closest))
                 closest = point.position;
